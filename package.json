@@ -1,0 +1,29 @@
+{
+  "name": "@omgc/core",
+  "version": "0.1.0",
+  "description": "OMGC core",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openmusicgame/omgc-core.git"
+  },
+  "author": "LoveKicher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openmusicgame/omgc-core/issues"
+  },
+  "homepage": "https://github.com/openmusicgame/omgc-core#readme",
+  "devDependencies": {
+    "@types/readable-stream": "^2.3.11",
+    "@types/uuid": "^8.3.1",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "readable-stream": "^3.6.0",
+    "timespan-js": "^0.1.1",
+    "uuid": "^8.3.2"
+  }
+}
