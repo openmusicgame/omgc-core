@@ -1,7 +1,7 @@
 import { Direction4, Location, TimeValue } from "@/types/base/typeutil";
 import { HoldableNote } from "./Hold";
-import { Note } from "./Note";
-export interface SlideNode<T extends Note<any>> extends Animatable {
+import { INote } from "./Note";
+export interface SlideNode<T extends INote<any>> extends Animatable {
     /** 
      * 相对上一个SlideNode或者Slide起始位置的偏移，可能会有多余一个的坐标轴发生偏移（例如Arcaea的蛇）
      */
@@ -12,6 +12,6 @@ export interface SlideNode<T extends Note<any>> extends Animatable {
     note?: T extends Slide ? never : T;
 }
 
-export interface Slide extends Note<"slide">, HoldableNote {
-    nodes: SlideNode<Note<any>>[];
+export interface Slide extends INote<"slide">, HoldableNote {
+    nodes: SlideNode<INote<any>>[];
 }

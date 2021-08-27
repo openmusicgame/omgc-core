@@ -10,11 +10,20 @@ export type ExtensiveStringEnum<E extends string> = E | string;
 
 export type TimeValue = string | number;
 
-// Location和Point的区别是Location包含单位，例如px, %, *, hsl等
+// Location和Point的区别是Location包含单位，例如px, %等
 export type Location2D = [string, string];
 export type Location3D = [string, string, string];
 export type Location4D = [string, string, string, string];
 export type Location = Location2D | Location3D | Location4D; 
+
+export type LocationUnit = 
+"px" /** 像素 */|
+"%" /** 相对容器尺寸在指定方向上的百分比，不会受屏幕纵横比影响 */|
+"*" /** 比例尺寸，仅用于有轨。例如7key下落式，每个轨道宽度为*，则相当于(100/7)%，若一个音符宽度为2*相当于占了两个轨道宽 */|
+"hsw" /** x方向半屏长 */|
+"hsh" /** y方向半屏长 */|
+"vw" /** 相对屏幕x方向的百分比宽度 */|
+"vh" /** 相对屏幕y方向的百分比宽度 */;
 
 export type Margin = [string, string, string, string];
 

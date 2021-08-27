@@ -1,9 +1,9 @@
 import { BlobLike, Dictionary } from "@/types/base/typeutil";
 import Chart from "@/types/Chart";
 
-export interface ChartImporterConstructor<T extends string> {
+export interface ChartExporterConstructor<T extends string> {
     readonly type: T;
-    new(): ChartImporter<T>;
+    new(): ChartExporter<T>;
 
     pluginName: string;
     version: string;
@@ -15,15 +15,15 @@ export interface ChartImporterConstructor<T extends string> {
     }>;
 }
 
-export interface ChartImporter<T extends string> {
+export interface ChartExporter<T extends string> {
     /**
-     * Import plain-text chart file(e.g. JSON)
+     * Export plain-text chart file(e.g. JSON)
      * @param chartContent file content
      */
-    importChart(chartContent: string): Promise<Chart>;
+    exportChart(chart: Chart): Promise<string>;
     /**
-     * Import chart bundle file includes music, illustration, etc.(e.g. Molody .mcz)
+     * Export chart bundle file includes music, illustration, etc.(e.g. Molody .mcz)
      * @param bundleFile a blob-like object(bytes + MIME type)
      */
-    importChartBundle(bundleFile: BlobLike, context: Dictionary<any>): Promise<Chart>;
+    exportChartBundle(chart: Chart, context: Dictionary<any>): Promise<BlobLike>;
 }

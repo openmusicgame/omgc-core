@@ -16,9 +16,12 @@ export type ChartModes =
     "other";
 
 export interface PredefinedMetadata {
+    /** 标记谱面来源（游戏） */
     "preserved.source": string;
+    /** 标记谱面制作工具 */
     "preserved.creator": string;
     "keyCount": number;
+    /** 标记推荐玩法 */
     "mode": ChartModes;
 }
 
@@ -47,14 +50,14 @@ export function chart(name: string,
     data: ChartData,
     rel?: ChartRelation
 ): Chart { 
+    let meta = options.metadata || {};
+    meta["preserved.creator"] = meta["preserved.creator"] || "omgc";
+
     let ret: Chart = {
         uid: uuid(),
         name,
         version: options.version || "0.1.0",
-        metadata: options.metadata || {
-            "preserved.creator": "omgc",
-            mode: "key"
-        },
+        metadata: meta,
         data,
         rel
     };
