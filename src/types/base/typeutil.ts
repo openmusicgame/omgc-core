@@ -10,6 +10,8 @@ export type ExtensiveStringEnum<E extends string> = E | string;
 
 export type TimeValue = string | number;
 
+export type Constructor<T> = (() => T) | (new (...args: any[]) => T & object) | (new (...args: string[]) => Function);
+
 // Location和Point的区别是Location包含单位，例如px, %等
 export type Location2D = [string, string];
 export type Location3D = [string, string, string];

@@ -1,5 +1,5 @@
 import { TypedObject } from "../base/model";
-import { Location, TimeValue } from "@/types/base/typeutil";
+import { Location, Point, TimeValue } from "@/types/base/typeutil";
 import { Animatable } from "./Animatable";
 import { keyFrame } from "./KeyFrame";
 import { INote } from "./notes/Note";
@@ -15,6 +15,9 @@ export interface INoteSourceController extends ITimeline, TypedObject<"NoteSourc
     keyMode?: false | boolean;
     /** 轨道数 */
     keyCount?: number;
+    /** 使用栅格布局（星号尺寸）时，对于每一个位置维度的栅格数，
+     * 对于有轨下落式来说，x轴默认栅格数为轨道数 */
+    grids: Point;
     /** 发射位置，若不发射则为参考位置，一般是屏幕正中间 */
     location: Location;
     /** 
@@ -40,6 +43,7 @@ export class NoteSourceController extends Timeline implements INoteSourceControl
     notes: INote<any>[] = [];
     keyMode = false;
     keyCount = 0;
+    grids: Point = [0, 0];
     emit = true;
     emitDirection = 270;
     hiddenDistance = 0;

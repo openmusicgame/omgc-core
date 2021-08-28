@@ -39,28 +39,33 @@ export interface ChartBasic<T = number> extends IUniqueModel<T> {
     metadata: PredefinedDictionary<any, PredefinedMetadata>;
 }
 
-export default interface Chart<T = number> extends ChartBasic<T> {
+export interface Chart<T = number> extends ChartBasic<T> {
     rel?: ChartRelation;
     data: ChartData;
 }
 
+export class OmgcChart implements Chart {
+    version: string;
+    rel?: ChartRelation | undefined;
+    author?: string | undefined;
+    description?: string | undefined;
+    license?: string | undefined;
+    cover?: string | undefined;
+    repository?: string | undefined;
+    keywords?: string[] | undefined;
+    level?: string | undefined;
+    rank?: string | undefined;
+    metadata: PredefinedDictionary<any, PredefinedMetadata>;
+    id?: number | undefined;
+    uid: string;
 
-export function chart(name: string, 
-    options: Partial<ChartBasic> = {}, 
-    data: ChartData,
-    rel?: ChartRelation
-): Chart { 
-    let meta = options.metadata || {};
-    meta["preserved.creator"] = meta["preserved.creator"] || "omgc";
+    constructor(public name: string, public data: ChartData, metadata: PredefinedDictionary<any, PredefinedMetadata> = {}) {
+        this.uid = uuid();
+        this.version = "0.1.0";
+        this.metadata = metadata;
+        if (!this.metadata["preserved.creator"]) {
+            this.metadata["preserved.creator"] = "omgc";
+        }
+    }
 
-    let ret: Chart = {
-        uid: uuid(),
-        name,
-        version: options.version || "0.1.0",
-        metadata: meta,
-        data,
-        rel
-    };
-    ret = Object.assign(options, ret);
-    return ret;
 }

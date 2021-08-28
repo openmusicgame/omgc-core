@@ -1,5 +1,5 @@
 import { Dictionary } from "./base/typeutil";
-import Chart from "./Chart";
+import { Chart } from "./Chart";
 
 export default interface ChartResource {
 
